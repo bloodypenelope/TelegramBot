@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextCommandHandler {
-
     private final List<TextCommand> commands = new ArrayList<>();
     private final CommandResult error = new CommandResult("Something going wrong, try again");
     public void addCommand(TextCommand command) {

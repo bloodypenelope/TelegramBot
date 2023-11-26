@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 public class SimpleTextCommand implements TextCommand {
-
-
     private final UserState acceptableState;
     private final CommandResult result;
     private BiConsumer<UserSession, String> action;

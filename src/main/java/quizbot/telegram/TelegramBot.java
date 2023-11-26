@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TelegramBot extends TelegramLongPollingBot {
-
     private final String name;
     private TextCommandHandler textHandler = null;
     private TextCommandHandler buttonHandler = null;

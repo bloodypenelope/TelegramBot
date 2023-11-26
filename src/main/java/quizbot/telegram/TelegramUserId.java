@@ -12,5 +12,4 @@ public record TelegramUserId(Long id) implements UserId {
         TelegramUserId that = (TelegramUserId) o;
         return Objects.equals(id, that.id);
     }
-
 }

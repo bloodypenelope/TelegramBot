@@ -13,7 +13,6 @@ import java.nio.file.Files;
 import java.sql.SQLException;
 
 public class BotInitializer {
-
     public static void main(String[] args) throws IOException, TelegramApiException, SQLException {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         var data = Files.readAllLines(new File("src\\main\\resources\\telegramKey").toPath());

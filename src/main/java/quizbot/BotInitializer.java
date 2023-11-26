@@ -20,7 +20,6 @@ public class BotInitializer {
         var name = data.get(1);
         var bot = new TelegramBot(token, name);
 
-
         var textHandler = new TextCommandHandler();
         textHandler.addCommand(new SimpleTextCommand(UserState.NEW_BEE,
                 "Hi, it's a Java Quiz Bot! ",

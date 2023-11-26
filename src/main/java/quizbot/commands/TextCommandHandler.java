@@ -16,7 +16,7 @@ public class TextCommandHandler {
     }
     public CommandResult processCommand(UserSession session, String text)  {
         var command = commands.stream().filter(c -> c.canBeApply(session, text)).findFirst();
-        var result = command.map(c-> {
+        var result = command.map(c -> {
             try {
                 return c.execute(session, text);
             } catch (SQLException | IOException e) {

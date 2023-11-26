@@ -18,6 +18,7 @@ public class UserSessionHandler implements UserSession {
         this.id = id;
     }
 
+    @Override
     public Long getId() {
         return id.id();
     }
@@ -77,6 +78,7 @@ public class UserSessionHandler implements UserSession {
         this.answer = answer;
     }
 
+    @Override
     public void createQuestions(String difficulty) throws SQLException, IOException {
         var data = Files.readAllLines(new File("src\\main\\resources\\sqlData").toPath());
         var url = data.get(0);
@@ -93,6 +95,7 @@ public class UserSessionHandler implements UserSession {
         setAnswer(quiz.getString(7));
     }
 
+    @Override
     public boolean nextQuestion() throws SQLException {
         if (quiz.next()) {
             setQuestion(quiz.getString(2) + "\n\n" + quiz.getString(3)

@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
 
 public class AnswerCommand implements TextCommand {
@@ -37,10 +39,11 @@ public class AnswerCommand implements TextCommand {
     public CommandResult execute(UserSession session, String text) throws SQLException {
         if (session.validateAnswer(text))
             session.incrementScore();
-        var output = "";
+        String output;
+        List<String> buttons;
         if (session.nextQuestion()) {
             output = session.getQuestion();
-            return new CommandResult(output, ButtonHelper.optionButtons);
+            buttons = ButtonHelper.optionButtons;
         } else {
             var exists = stmt.executeQuery("SELECT EXISTS(SELECT * FROM stats WHERE id = " + session.getId() + ")");
             exists.next();
@@ -52,9 +55,10 @@ public class AnswerCommand implements TextCommand {
                 stmt.executeUpdate("UPDATE stats SET " + session.getDifficulty() + " = " + session.getScore()
                     + " WHERE id = " + session.getId());
             output = "Your score is: " + session.getScore();
+            buttons = ButtonHelper.readyStateButtons;
             session.setScore(0);
             this.action.accept(session, text);
-            return new CommandResult(output, ButtonHelper.readyStateButtons);
         }
+        return new CommandResult(output, buttons);
     }
 }

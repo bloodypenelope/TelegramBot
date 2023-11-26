@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
-            <version>6.8.0</version>
+            <version>${telegrambots.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

@@ -1,2 +1,2 @@
-# TelegramBot
-Telegram bot on Java
+# Java Quiz Bot
+Telegram Java Quiz bot

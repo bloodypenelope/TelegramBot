@@ -61,7 +61,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    private static InlineKeyboardMarkup getInlineKeyboardMarkup(CommandResult result) {
+    private InlineKeyboardMarkup getInlineKeyboardMarkup(CommandResult result) {
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
         List<InlineKeyboardButton> rowInline = new ArrayList<>();

@@ -6,7 +6,7 @@ import quizbot.users.UserState;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-public class SimpleButtonReadyStateCommand extends SimpleTextCommand{
+public class SimpleButtonReadyStateCommand extends SimpleTextCommand {
     private final String data;
 
     @SuppressWarnings("unused")

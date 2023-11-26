@@ -90,8 +90,8 @@ public class UserSessionHandler implements UserSession {
         this.quiz = stmt.executeQuery("SELECT * FROM " + difficulty.toLowerCase() + "_t ORDER BY RAND() LIMIT 10");
         quiz.next();
         setQuestion(quiz.getString(2) + "\n\n" + quiz.getString(3)
-            + "\n" + quiz.getString(4) + "\n" + quiz.getString(5)
-            + "\n" + quiz.getString(6));
+                + "\n" + quiz.getString(4) + "\n" + quiz.getString(5)
+                + "\n" + quiz.getString(6));
         setAnswer(quiz.getString(7));
     }
 

@@ -31,7 +31,7 @@ public class SimpleTextCommand implements TextCommand {
     public SimpleTextCommand(UserState acceptableState, String resultText, UserState newState) {
         this.acceptableState = acceptableState;
         this.result = new CommandResult(resultText);
-        this.action = (s,t) -> s.setState(newState);
+        this.action = (s, t) -> s.setState(newState);
     }
 
     @Override

@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
@@ -53,7 +52,7 @@ public class AnswerCommand implements TextCommand {
             score.next();
             if (score.getInt(session.getDifficulty()) < session.getScore())
                 stmt.executeUpdate("UPDATE stats SET " + session.getDifficulty() + " = " + session.getScore()
-                    + " WHERE id = " + session.getId());
+                        + " WHERE id = " + session.getId());
             output = "Your score is: " + session.getScore();
             buttons = ButtonHelper.readyStateButtons;
             session.setScore(0);

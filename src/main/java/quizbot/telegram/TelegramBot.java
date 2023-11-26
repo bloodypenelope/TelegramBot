@@ -29,7 +29,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             var message = update.getMessage();
             var chatId = update.getMessage().getChatId();
             var session = UserProvider.getInstance().findUserById(new TelegramUserId(chatId));
-            if (textHandler!=null) {
+            if (textHandler != null) {
                 var result = textHandler.processCommand(session, message.getText());
                 response(result, chatId);
             }
@@ -39,7 +39,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             var chatId = callbackQuery.getMessage().getChatId();
             var session = UserProvider.getInstance().findUserById(new TelegramUserId(chatId));
             var command = callbackQuery.getData();
-            if (buttonHandler!=null) {
+            if (buttonHandler != null) {
                 var result = buttonHandler.processCommand(session, command);
                 response(result, chatId);
             }
@@ -50,7 +50,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         SendMessage response = new SendMessage();
         response.setChatId(chatId);
         response.setText(result.getResult());
-        if(result.hasButtons()) {
+        if (result.hasButtons()) {
             InlineKeyboardMarkup markupInline = getInlineKeyboardMarkup(result);
             response.setReplyMarkup(markupInline);
         }

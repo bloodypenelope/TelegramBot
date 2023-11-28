@@ -22,7 +22,7 @@ public class BotInitializer {
 
         var textHandler = new TextCommandHandler();
         textHandler.addCommand(new SimpleTextCommand(UserState.NEW_BEE,
-                "Hi, it's a Java Quiz Bot! ",
+                "Hi, it's a Java Quiz Bot!",
                 ButtonHelper.readyStateButtons,
                 (s, t) -> s.setState(UserState.READY)));
         bot.addTextHandler(textHandler);

@@ -19,7 +19,7 @@ public class SelectDifficultyCommand implements TextCommand {
 
     @Override
     public boolean canBeApply(UserSession session, String text) {
-        return this.acceptableState == session.getState() && text.matches("^Easy$");
+        return this.acceptableState == session.getState() && text.matches("^Easy|Medium$");
     }
 
     @Override

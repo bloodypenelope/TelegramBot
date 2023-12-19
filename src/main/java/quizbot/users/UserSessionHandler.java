@@ -1,8 +1,8 @@
 package quizbot.users;
 
-import java.io.File;
+import quizbot.sql.SQLConnector;
+
 import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.*;
 
 public class UserSessionHandler implements UserSession {
@@ -80,28 +80,23 @@ public class UserSessionHandler implements UserSession {
 
     @Override
     public void createQuestions(String difficulty) throws SQLException, IOException {
-        var data = Files.readAllLines(new File("src\\main\\resources\\sqlData").toPath());
-        var url = data.get(0);
-        var user = data.get(1);
-        var password = data.get(2);
-        Connection conn = DriverManager.getConnection(url, user, password);
-        Statement stmt = conn.createStatement();
         setDifficulty(difficulty);
-        this.quiz = stmt.executeQuery("SELECT * FROM " + difficulty.toLowerCase() + "_t ORDER BY RAND() LIMIT 10");
+        SQLConnector connector = SQLConnector.getInstance();
+        this.quiz = connector.getQuestions(difficulty);
         quiz.next();
-        setQuestion(quiz.getString(2) + "\n\n" + quiz.getString(3)
-                + "\n" + quiz.getString(4) + "\n" + quiz.getString(5)
-                + "\n" + quiz.getString(6));
-        setAnswer(quiz.getString(7));
+        setQuestion(quiz.getString("question") + "\n\n" + quiz.getString("opt_a")
+                + "\n" + quiz.getString("opt_b") + "\n" + quiz.getString("opt_c")
+                + "\n" + quiz.getString("opt_d"));
+        setAnswer(quiz.getString("ans"));
     }
 
     @Override
     public boolean nextQuestion() throws SQLException {
         if (quiz.next()) {
-            setQuestion(quiz.getString(2) + "\n\n" + quiz.getString(3)
-                    + "\n" + quiz.getString(4) + "\n" + quiz.getString(5)
-                    + "\n" + quiz.getString(6));
-            setAnswer(quiz.getString(7));
+            setQuestion(quiz.getString("question") + "\n\n" + quiz.getString("opt_a")
+                    + "\n" + quiz.getString("opt_b") + "\n" + quiz.getString("opt_c")
+                    + "\n" + quiz.getString("opt_d"));
+            setAnswer(quiz.getString("ans"));
             return true;
         } else return false;
     }
